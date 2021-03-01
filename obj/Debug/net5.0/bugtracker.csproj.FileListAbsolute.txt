@@ -171,3 +171,4 @@
 /home/nils/Developement/dotNET/bugtracker/bugtracker/obj/Debug/net5.0/Razor/Views/Users/Details.cshtml.g.cs
 /home/nils/Developement/dotNET/bugtracker/bugtracker/obj/Debug/net5.0/Razor/Views/Users/Edit.cshtml.g.cs
 /home/nils/Developement/dotNET/bugtracker/bugtracker/obj/Debug/net5.0/Razor/Views/Users/Index.cshtml.g.cs
+/home/nils/Developement/dotNET/bugtracker/bugtracker/bin/Debug/net5.0/Microsoft.AspNetCore.Authentication.OpenIdConnect.dll
