@@ -15638,6 +15638,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/home/nils/Developement/dotNET/bugtracker/bugtracker/Views/Account/Profile.cshtml",
+      "TargetPath": "Views\\Account\\Profile.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/home/nils/Developement/dotNET/bugtracker/bugtracker/Views/_ViewStart.cshtml",
       "TargetPath": "Views\\_ViewStart.cshtml",
       "FileKind": "mvc"
