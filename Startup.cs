@@ -33,7 +33,7 @@ namespace bugtracker
         {
             services.AddControllersWithViews();
             services.AddDbContext<BugtrackerContext>(options =>
-            options.UseSqlite(Configuration.GetConnectionString("BugtrackerContext")));
+                options.UseSqlite(Configuration.GetConnectionString("BugtrackerContext")));
             // Cookie configuration for HTTPS
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -69,7 +69,8 @@ namespace bugtracker
                 // Set the correct name claim type
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
-                    NameClaimType = "name"
+                    NameClaimType = "name",
+                    RoleClaimType = "https://schemas.quickstarts.com/roles"
                 };
 
                 // Set the callback path, so Auth0 will call back to http://localhost:3000/callback
@@ -136,7 +137,7 @@ namespace bugtracker
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Dashboard}/{action=Index}");
             });
         }
     }
