@@ -15628,6 +15628,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/home/nils/Developement/dotNET/bugtracker/bugtracker/Views/User/Delete.cshtml",
+      "TargetPath": "Views\\User\\Delete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/home/nils/Developement/dotNET/bugtracker/bugtracker/Views/Users/Create.cshtml",
       "TargetPath": "Views\\Users\\Create.cshtml",
       "FileKind": "mvc"
@@ -15645,6 +15650,26 @@
     {
       "FilePath": "/home/nils/Developement/dotNET/bugtracker/bugtracker/Views/Dashboard/Index.cshtml",
       "TargetPath": "Views\\Dashboard\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/nils/Developement/dotNET/bugtracker/bugtracker/Views/User/Create.cshtml",
+      "TargetPath": "Views\\User\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/nils/Developement/dotNET/bugtracker/bugtracker/Views/User/Index.cshtml",
+      "TargetPath": "Views\\User\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/nils/Developement/dotNET/bugtracker/bugtracker/Views/User/Details.cshtml",
+      "TargetPath": "Views\\User\\Details.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/nils/Developement/dotNET/bugtracker/bugtracker/Views/User/Edit.cshtml",
+      "TargetPath": "Views\\User\\Edit.cshtml",
       "FileKind": "mvc"
     },
     {

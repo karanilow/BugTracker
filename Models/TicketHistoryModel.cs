@@ -6,6 +6,7 @@ namespace bugtracker.Models
     public class TicketHistory
     {
         public int Id { get; set; }
+        public int TicketID { get; set; }
         public string PropertyFeild { get; set; }
         public DateTime Date { get; set; }
         public string OldValue { get; set; }

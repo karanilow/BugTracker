@@ -34,6 +34,10 @@ namespace bugtracker
             services.AddControllersWithViews();
             services.AddDbContext<BugtrackerContext>(options =>
                 options.UseSqlite(Configuration.GetConnectionString("BugtrackerContext")));
+
+            // Provides helpful Error info in the developpement environment 
+            services.AddDatabaseDeveloperPageExceptionFilter();
+
             // Cookie configuration for HTTPS
             services.Configure<CookiePolicyOptions>(options =>
             {
