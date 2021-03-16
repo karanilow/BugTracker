@@ -179,3 +179,4 @@
 /home/nils/Developement/dotNET/bugtracker/bugtracker/obj/Debug/net5.0/Razor/Views/Project/Details.cshtml.g.cs
 /home/nils/Developement/dotNET/bugtracker/bugtracker/obj/Debug/net5.0/Razor/Views/Project/Edit.cshtml.g.cs
 /home/nils/Developement/dotNET/bugtracker/bugtracker/obj/Debug/net5.0/Razor/Views/Project/Index.cshtml.g.cs
+/home/nils/Developement/dotNET/bugtracker/bugtracker/obj/Debug/net5.0/Razor/Views/Home/Error404.cshtml.g.cs

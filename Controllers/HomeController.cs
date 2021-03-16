@@ -29,9 +29,17 @@ namespace bugtracker.Controllers
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        public IActionResult Error(int code)
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+
+        [Route("{*url}", Order = 999)]
+        public IActionResult Error404()
+        {
+            Response.StatusCode = 404;
+            return View();
         }
     }
 }
