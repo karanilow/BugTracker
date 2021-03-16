@@ -21,7 +21,6 @@ namespace bugtracker.Models
         public UserRole Role { get; set; }
         public UserType Type { get; set; }
 
-
         [NotMapped]
         public ICollection<TicketInfo> AssignedTickets { get; set; }
 

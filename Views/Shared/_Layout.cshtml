@@ -36,7 +36,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" asp-area="" asp-controller="Dashboard" asp-action="Index">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -52,7 +52,7 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#">
+                <a class="nav-link collapsed" asp-area="" asp-controller="Project" asp-action="Index">
                     <i class="fas fa-tasks"></i>
                     <span>Projects</span>
                 </a>
@@ -83,8 +83,8 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Manage Users:</h6>
-                        <a class="collapse-item" href="buttons.html">Information</a>
-                        <a class="collapse-item" href="cards.html">Roles</a>
+                        <a class="collapse-item" asp-area="" asp-controller="User" asp-action="Index">Information</a>
+                        <a class="collapse-item" href="#">Roles</a>
                     </div>
                 </div>
             </li>

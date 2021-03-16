@@ -141,7 +141,7 @@ namespace bugtracker
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Dashboard}/{action=Index}");
+                    pattern: "{controller=Dashboard}/{action=Index}/{Id?}");
             });
         }
     }
