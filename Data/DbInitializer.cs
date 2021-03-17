@@ -18,14 +18,14 @@ namespace bugtracker.Data
 
             var users = new User[]
             {
-            new User{UserName="Nino Olivetto",Role=UserRole.ADMIN, Type=UserType.Regular},
-            new User{UserName="Meredith Alonso",Role=UserRole.ADMIN, Type=UserType.Regular},
-            new User{UserName="Arturo Anand",Role=UserRole.PM, Type=UserType.Regular},
-            new User{UserName="Laura Norman",Role=UserRole.PM, Type=UserType.Regular},
-            new User{UserName="Carson Alexander",Role=UserRole.DEV, Type=UserType.Regular},
-            new User{UserName="Gytis Barzdukas",Role=UserRole.DEV, Type=UserType.Regular},
-            new User{UserName="Yan Li",Role=UserRole.DEV, Type=UserType.Regular},
-            new User{UserName="Peggy Justice",Role=UserRole.DEV, Type=UserType.Regular},
+            new User{UserName="Nino Olivetto",Email="nino@hotmail.com", Role=UserRole.ADMIN, Type=UserType.Regular},
+            new User{UserName="Meredith Alonso",Email="alonso98@hotmail.com", Role=UserRole.ADMIN, Type=UserType.Regular},
+            new User{UserName="Arturo Anand",Email="aanand@msn.com", Role=UserRole.PM, Type=UserType.Regular},
+            new User{UserName="Laura Norman",Email="l.norman@gmail.com", Role=UserRole.PM, Type=UserType.Regular},
+            new User{UserName="Carson Alexander",Email="carson56@outlook.com", Role=UserRole.DEV, Type=UserType.Regular},
+            new User{UserName="Gytis Barzdukas",Email="gytis.barzdukas@yahoo.com", Role=UserRole.DEV, Type=UserType.Regular},
+            new User{UserName="Yan Li",Email="yan.li98@hotmail.com", Role=UserRole.DEV, Type=UserType.Regular},
+            new User{UserName="Peggy Justice",Email="peggy@gmail.com", Role=UserRole.DEV, Type=UserType.Regular},
             };
             foreach (User s in users)
             {
