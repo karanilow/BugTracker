@@ -29,6 +29,7 @@ namespace bugtracker.Models
         public DateTime? FinishedOn { get; set; }
 
         [DataType(DataType.Date)]
+        [Display(Name = "Due on")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime? DueOn { get; set; }
 
