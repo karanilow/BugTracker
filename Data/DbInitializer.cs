@@ -44,32 +44,15 @@ namespace bugtracker.Data
             }
             context.SaveChanges();
 
-            var ticketInfos = new TicketInfo[]
-            {
-                new TicketInfo{SubmittedByUserID=3, AssignedToUserID=5, Description="Manage Auth0 librairies and customization possibilities", CreatedOn=DateTime.Parse("2021-09-01"), UpdatedOn=DateTime.Parse("2021-09-01"), FinishedOn=null, DueOn=DateTime.Parse("2021-12-01")},
-                new TicketInfo{SubmittedByUserID=3, AssignedToUserID=6, Description="Deploy new feature ready in development", CreatedOn=DateTime.Parse("2021-09-01"), UpdatedOn=DateTime.Parse("2021-09-01"), FinishedOn=null, DueOn=DateTime.Parse("2021-12-01")},
-                new TicketInfo{SubmittedByUserID=4, AssignedToUserID=7, Description="Create info line by line to start worjing with databases", CreatedOn=DateTime.Parse("2021-09-01"), UpdatedOn=DateTime.Parse("2021-09-01"), FinishedOn=null, DueOn=DateTime.Parse("2021-12-01")},
-                new TicketInfo{SubmittedByUserID=4, AssignedToUserID=8, Description="Develop the UX that enables 'DEMO' accounts", CreatedOn=DateTime.Parse("2021-09-01"), UpdatedOn=DateTime.Parse("2021-09-01"), FinishedOn=null, DueOn=DateTime.Parse("2021-12-01")},
-                new TicketInfo{SubmittedByUserID=4, AssignedToUserID=5, Description="Use Azure services for free deployements", CreatedOn=DateTime.Parse("2021-09-01"), UpdatedOn=DateTime.Parse("2021-09-01"), FinishedOn=null, DueOn=DateTime.Parse("2021-12-01")},
-                new TicketInfo{SubmittedByUserID=4, AssignedToUserID=6, Description="Make Comments to Tickets possible", CreatedOn=DateTime.Parse("2021-09-01"), UpdatedOn=DateTime.Parse("2021-09-01"), FinishedOn=null, DueOn=DateTime.Parse("2021-12-01")},
-                new TicketInfo{SubmittedByUserID=3, AssignedToUserID=8, Description="Develop the Logic that enables 'DEMO' accounts", CreatedOn=DateTime.Parse("2021-09-01"), UpdatedOn=DateTime.Parse("2021-09-01"), FinishedOn=null, DueOn=DateTime.Parse("2021-12-01")},
-            };
-            foreach (TicketInfo t in ticketInfos)
-            {
-                context.TicketInfos.Add(t);
-            }
-            context.SaveChanges();
-
-
             var tickets = new Ticket[]
             {
-            new Ticket{ProjectID=1, TicketInfoID=1, Title="Design Login Button", Status=TicketStatus.InProgress, Priority=TicketPriority.High},
-            new Ticket{ProjectID=1, TicketInfoID=2, Title="Deploy new Attachment feature", Status=TicketStatus.InProgress, Priority=TicketPriority.High},
-            new Ticket{ProjectID=1, TicketInfoID=3, Title="Seed the database", Status=TicketStatus.InProgress, Priority=TicketPriority.High},
-            new Ticket{ProjectID=1, TicketInfoID=4, Title="Customize Login features", Status=TicketStatus.InProgress, Priority=TicketPriority.High},
-            new Ticket{ProjectID=1, TicketInfoID=5, Title="Deploy on Azure", Status=TicketStatus.InProgress, Priority=TicketPriority.High},
-            new Ticket{ProjectID=1, TicketInfoID=6, Title="Develop Comments feature", Status=TicketStatus.InProgress, Priority=TicketPriority.High},
-            new Ticket{ProjectID=1, TicketInfoID=7, Title="Develop Demo User feature", Status=TicketStatus.InProgress, Priority=TicketPriority.High}
+            new Ticket{ProjectID=1, Title="Design Login Button",Description="Manage Auth0 librairies and customization possibilities", CreatedOn=DateTime.Parse("2021-09-01"), UpdatedOn=DateTime.Parse("2021-09-01"), FinishedOn=null, DueOn=DateTime.Parse("2021-12-01"), Status=TicketStatus.InProgress, Priority=TicketPriority.High},
+            new Ticket{ProjectID=1, Title="Deploy new Attachment feature", Description="Deploy new feature ready in development", CreatedOn=DateTime.Parse("2021-09-01"), UpdatedOn=DateTime.Parse("2021-09-01"), FinishedOn=null, DueOn=DateTime.Parse("2021-12-01"), Status=TicketStatus.InProgress, Priority=TicketPriority.High},
+            new Ticket{ProjectID=1, Title="Seed the database", Description="Create info line by line to start worjing with databases", CreatedOn=DateTime.Parse("2021-09-01"), UpdatedOn=DateTime.Parse("2021-09-01"), FinishedOn=null, DueOn=DateTime.Parse("2021-12-01"), Status=TicketStatus.InProgress, Priority=TicketPriority.High},
+            new Ticket{ProjectID=1, Title="Customize Login features", Description="Develop the UX that enables 'DEMO' accounts", CreatedOn=DateTime.Parse("2021-09-01"), UpdatedOn=DateTime.Parse("2021-09-01"), FinishedOn=null, DueOn=DateTime.Parse("2021-12-01"), Status=TicketStatus.InProgress, Priority=TicketPriority.High},
+            new Ticket{ProjectID=1, Title="Deploy on Azure", Description="Use Azure services for free deployements", CreatedOn=DateTime.Parse("2021-09-01"), UpdatedOn=DateTime.Parse("2021-09-01"), FinishedOn=null, DueOn=DateTime.Parse("2021-12-01"), Status=TicketStatus.InProgress, Priority=TicketPriority.High},
+            new Ticket{ProjectID=1, Title="Develop Comments feature", Description="Make Comments to Tickets possible", CreatedOn=DateTime.Parse("2021-09-01"), UpdatedOn=DateTime.Parse("2021-09-01"), FinishedOn=null, DueOn=DateTime.Parse("2021-12-01"), Status=TicketStatus.InProgress, Priority=TicketPriority.High},
+            new Ticket{ProjectID=1, Title="Develop Demo User feature", Description="Develop the Logic that enables 'DEMO' accounts", CreatedOn=DateTime.Parse("2021-09-01"), UpdatedOn=DateTime.Parse("2021-09-01"), FinishedOn=null, DueOn=DateTime.Parse("2021-12-01"), Status=TicketStatus.InProgress, Priority=TicketPriority.High}
             };
             foreach (Ticket c in tickets)
             {

@@ -35,7 +35,6 @@ namespace bugtracker.Controllers
 
             var project = await _context.Projects
                                 .Include(t => t.Tickets)
-                                    .ThenInclude(ti => ti.TicketInfo)
                                 .AsNoTracking()
                                 .FirstOrDefaultAsync(m => m.Id == id);
             if (project == null)

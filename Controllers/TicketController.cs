@@ -22,7 +22,7 @@ namespace bugtracker.Controllers
         // GET: Ticket
         public async Task<IActionResult> Index()
         {
-            var bugtrackerContext = _context.Tickets.Include(t => t.Project).Include(t => t.TicketInfo);
+            var bugtrackerContext = _context.Tickets.Include(t => t.Project);
             return View(await bugtrackerContext.ToListAsync());
         }
 
@@ -36,7 +36,6 @@ namespace bugtracker.Controllers
 
             var ticket = await _context.Tickets
                 .Include(t => t.Project)
-                .Include(t => t.TicketInfo)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (ticket == null)
@@ -50,6 +49,7 @@ namespace bugtracker.Controllers
         // GET: Ticket/Create
         public IActionResult Create()
         {
+            PopulateProjectsDropDownList();
             return View();
         }
 
@@ -58,7 +58,7 @@ namespace bugtracker.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Title,Status,Priority")] Ticket ticket)
+        public async Task<IActionResult> Create([Bind("ProjectID,Title,Status,Priority")] Ticket ticket)
         {
             if (ModelState.IsValid)
             {
@@ -66,8 +66,7 @@ namespace bugtracker.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            // ViewData["ProjectID"] = new SelectList(_context.Projects, "Id", "Id", ticket.ProjectID);
-            // ViewData["TicketInfoID"] = new SelectList(_context.TicketInfos, "Id", "Id", ticket.TicketInfoID);
+            PopulateProjectsDropDownList(ticket.ProjectID);
             return View(ticket);
         }
 
@@ -130,7 +129,6 @@ namespace bugtracker.Controllers
 
             var ticket = await _context.Tickets
                 .Include(t => t.Project)
-                .Include(t => t.TicketInfo)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (ticket == null)
             {
@@ -138,6 +136,14 @@ namespace bugtracker.Controllers
             }
 
             return View(ticket);
+        }
+
+        private void PopulateProjectsDropDownList(object selectedProject = null)
+        {
+            var ProjectQuery = from p in _context.Projects
+                               orderby p.Title
+                               select p;
+            ViewBag.ProjectID = new SelectList(ProjectQuery.AsNoTracking(), "Id", "Title", selectedProject);
         }
 
         // POST: Ticket/Delete/5
