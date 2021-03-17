@@ -180,3 +180,8 @@
 /home/nils/Developement/dotNET/bugtracker/bugtracker/obj/Debug/net5.0/Razor/Views/Project/Edit.cshtml.g.cs
 /home/nils/Developement/dotNET/bugtracker/bugtracker/obj/Debug/net5.0/Razor/Views/Project/Index.cshtml.g.cs
 /home/nils/Developement/dotNET/bugtracker/bugtracker/obj/Debug/net5.0/Razor/Views/Home/Error404.cshtml.g.cs
+/home/nils/Developement/dotNET/bugtracker/bugtracker/obj/Debug/net5.0/Razor/Views/Ticket/Create.cshtml.g.cs
+/home/nils/Developement/dotNET/bugtracker/bugtracker/obj/Debug/net5.0/Razor/Views/Ticket/Delete.cshtml.g.cs
+/home/nils/Developement/dotNET/bugtracker/bugtracker/obj/Debug/net5.0/Razor/Views/Ticket/Details.cshtml.g.cs
+/home/nils/Developement/dotNET/bugtracker/bugtracker/obj/Debug/net5.0/Razor/Views/Ticket/Edit.cshtml.g.cs
+/home/nils/Developement/dotNET/bugtracker/bugtracker/obj/Debug/net5.0/Razor/Views/Ticket/Index.cshtml.g.cs

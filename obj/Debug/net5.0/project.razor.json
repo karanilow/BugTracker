@@ -15603,6 +15603,11 @@
   "RootNamespace": "bugtracker",
   "Documents": [
     {
+      "FilePath": "/home/nils/Developement/dotNET/bugtracker/bugtracker/Views/Ticket/Create.cshtml",
+      "TargetPath": "Views\\Ticket\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/home/nils/Developement/dotNET/bugtracker/bugtracker/Views/Project/Index.cshtml",
       "TargetPath": "Views\\Project\\Index.cshtml",
       "FileKind": "mvc"
@@ -15610,6 +15615,16 @@
     {
       "FilePath": "/home/nils/Developement/dotNET/bugtracker/bugtracker/Views/Project/Edit.cshtml",
       "TargetPath": "Views\\Project\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/nils/Developement/dotNET/bugtracker/bugtracker/Views/Ticket/Edit.cshtml",
+      "TargetPath": "Views\\Ticket\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/nils/Developement/dotNET/bugtracker/bugtracker/Views/Ticket/Delete.cshtml",
+      "TargetPath": "Views\\Ticket\\Delete.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -15653,6 +15668,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/home/nils/Developement/dotNET/bugtracker/bugtracker/Views/Ticket/Index.cshtml",
+      "TargetPath": "Views\\Ticket\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/home/nils/Developement/dotNET/bugtracker/bugtracker/Views/Dashboard/Index.cshtml",
       "TargetPath": "Views\\Dashboard\\Index.cshtml",
       "FileKind": "mvc"
@@ -15688,8 +15708,8 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/home/nils/Developement/dotNET/bugtracker/bugtracker/Views/Home/Error/404.cshtml",
-      "TargetPath": "Views\\Home\\Error\\404.cshtml",
+      "FilePath": "/home/nils/Developement/dotNET/bugtracker/bugtracker/Views/Ticket/Details.cshtml",
+      "TargetPath": "Views\\Ticket\\Details.cshtml",
       "FileKind": "mvc"
     },
     {
