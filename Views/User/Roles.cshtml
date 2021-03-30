@@ -1,0 +1,43 @@
+@model IEnumerable<bugtracker.Models.User>
+
+@{
+    ViewData["Title"] = "Roles";
+}
+
+<h1>Roles</h1>
+
+<h4>Users</h4>
+<div class="col-xs-12 col-md-6">
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.UserName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Role)
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.UserName)
+                                </td>
+                                <td>
+                                    <select asp-for="@item.Role" class="form-control"
+                                        asp-items="Html.GetEnumSelectList<UserRole>()"></select>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

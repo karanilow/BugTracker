@@ -185,3 +185,4 @@
 /home/nils/Developement/dotNET/bugtracker/bugtracker/obj/Debug/net5.0/Razor/Views/Ticket/Details.cshtml.g.cs
 /home/nils/Developement/dotNET/bugtracker/bugtracker/obj/Debug/net5.0/Razor/Views/Ticket/Edit.cshtml.g.cs
 /home/nils/Developement/dotNET/bugtracker/bugtracker/obj/Debug/net5.0/Razor/Views/Ticket/Index.cshtml.g.cs
+/home/nils/Developement/dotNET/bugtracker/bugtracker/obj/Debug/net5.0/Razor/Views/User/Roles.cshtml.g.cs

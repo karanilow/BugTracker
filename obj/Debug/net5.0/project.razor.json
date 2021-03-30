@@ -15603,6 +15603,11 @@
   "RootNamespace": "bugtracker",
   "Documents": [
     {
+      "FilePath": "/home/nils/Developement/dotNET/bugtracker/bugtracker/Views/User/Roles.cshtml",
+      "TargetPath": "Views\\User\\Roles.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/home/nils/Developement/dotNET/bugtracker/bugtracker/Views/Ticket/Create.cshtml",
       "TargetPath": "Views\\Ticket\\Create.cshtml",
       "FileKind": "mvc"
