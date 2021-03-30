@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@using System.Web;
+@{
+    string controller = Context.Request.RouteValues["controller"].ToString();
+}
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -35,7 +39,7 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
+            <li class="nav-item @(controller == "Dashboard" ? "active" : "" )">
                 <a class="nav-link" asp-area="" asp-controller="Dashboard" asp-action="Index">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
@@ -51,7 +55,7 @@
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+            <li class="nav-item @(controller == "Project" ? "active" : "" )">
                 <a class="nav-link collapsed" asp-area="" asp-controller="Project" asp-action="Index">
                     <i class="fas fa-tasks"></i>
                     <span>Projects</span>
@@ -59,7 +63,7 @@
             </li>
 
             <!-- Nav Item - Charts -->
-            <li class="nav-item">
+            <li class="nav-item @(controller == "Ticket" ? "active" : "" )">
                 <a class="nav-link" asp-area="" asp-controller="Ticket" asp-action="Index">
                     <i class="fas fa-ticket-alt"></i>
                     <span>Tickets</span></a>
@@ -74,7 +78,7 @@
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+            <li class="nav-item @(controller == "User" ? "active" : "" )">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-users-cog"></i>
