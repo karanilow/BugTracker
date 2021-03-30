@@ -60,13 +60,23 @@ namespace bugtracker.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,UserName,Email,Password,Role,Type")] User user)
+        public async Task<IActionResult> Create([Bind("UserName,Email,Password,Role,Type")] User user)
         {
-            if (ModelState.IsValid)
+            try
             {
-                _context.Add(user);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                if (ModelState.IsValid)
+                {
+                    _context.Add(user);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+            }
+            catch (DbUpdateException ex)
+            {
+                ModelState.AddModelError("", "Unable to save changes. " +
+                                            "Try again, and if the problem persists " +
+                                            "see your system administrator." +
+                                            ex);
             }
             return View(user);
         }

@@ -19,6 +19,7 @@ namespace bugtracker.Models
         [Required, StringLength(50), Display(Name = "Name")]
         public string UserName { get; set; }
         [Required]
+        [EmailAddress]
         public string Email { get; set; }
         public UserRole Role { get; set; }
         [Display(Name = "Account Type")]
