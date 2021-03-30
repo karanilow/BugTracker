@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
 
 
 namespace bugtracker.Models
@@ -35,6 +36,7 @@ namespace bugtracker.Models
 
 
         public Project Project { get; set; }
+        public ICollection<TicketAssignment> TicketAssignments { get; set; }
         public TicketHistory TicketHistory { get; set; }
     }
 }

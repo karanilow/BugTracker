@@ -16,12 +16,16 @@ namespace bugtracker.Models
     public class User
     {
         public int Id { get; set; }
-        [Display(Name = "Name")]
+        [Required, StringLength(50), Display(Name = "Name")]
         public string UserName { get; set; }
+        [Required]
         public string Email { get; set; }
         public UserRole Role { get; set; }
         [Display(Name = "Account Type")]
         public UserType Type { get; set; }
+
+        public ICollection<TicketAssignment> TicketAssignments { get; set; }
+        public ICollection<ProjectAssignment> ProjectAssignments { get; set; }
 
     }
 }

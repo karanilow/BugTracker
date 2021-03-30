@@ -14,6 +14,9 @@ namespace bugtracker.Data
         public DbSet<Project> Projects { get; set; }
         public DbSet<Ticket> Tickets { get; set; }
         public DbSet<TicketHistory> TicketHistories { get; set; }
+        public DbSet<ProjectAssignment> ProjectAssignments { get; set; }
+        public DbSet<TicketAssignment> TicketAssignments { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -21,6 +24,17 @@ namespace bugtracker.Data
             modelBuilder.Entity<Project>().ToTable("Project");
             modelBuilder.Entity<Ticket>().ToTable("Ticket");
             modelBuilder.Entity<TicketHistory>().ToTable("TicketHistory");
+            modelBuilder.Entity<TicketAssignment>().ToTable("TicketAssignment");
+            modelBuilder.Entity<ProjectAssignment>().ToTable("ProjectAssignment");
+
+            // configure Primary Key
+            modelBuilder.Entity<TicketAssignment>()
+                .HasKey(t => new { t.TicketID, t.UserID });
+            // configure Primary Key
+            modelBuilder.Entity<ProjectAssignment>()
+                .HasKey(p => new { p.ProjectID, p.UserID });
+
+
         }
 
     }

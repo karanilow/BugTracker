@@ -8,7 +8,7 @@ namespace bugtracker.Data
     {
         public static void Initialize(BugtrackerContext context)
         {
-            context.Database.EnsureCreated();
+            //context.Database.EnsureCreated();
 
             // Look for any users.
             if (context.Users.Any())
@@ -35,9 +35,11 @@ namespace bugtracker.Data
 
 
             var projects = new Project[]
-                        {
-                new Project{Title="Bugtracker", Description="Create a Bugtracker for indepth understanding of ASP.NET and C#"}
-                        };
+            {
+                new Project{Title="Messenger App", Description="Create a Messenger App to enhance Clinet Support"},
+                new Project{Title="Testing plateforme", Description="Create a Testing plateforme and perform processes"},
+                new Project{Title="Bugtracker", Description="Create a Bugtracker for indepth understanding of ASP.NET and C#"},
+            };
             foreach (Project p in projects)
             {
                 context.Projects.Add(p);
@@ -52,11 +54,87 @@ namespace bugtracker.Data
             new Ticket{ProjectID=1, Title="Customize Login features", Description="Develop the UX that enables 'DEMO' accounts", CreatedOn=DateTime.Parse("2021-09-01"), UpdatedOn=DateTime.Parse("2021-09-01"), FinishedOn=null, DueOn=DateTime.Parse("2021-12-01"), Status=TicketStatus.InProgress, Priority=TicketPriority.High},
             new Ticket{ProjectID=1, Title="Deploy on Azure", Description="Use Azure services for free deployements", CreatedOn=DateTime.Parse("2021-09-01"), UpdatedOn=DateTime.Parse("2021-09-01"), FinishedOn=null, DueOn=DateTime.Parse("2021-12-01"), Status=TicketStatus.InProgress, Priority=TicketPriority.High},
             new Ticket{ProjectID=1, Title="Develop Comments feature", Description="Make Comments to Tickets possible", CreatedOn=DateTime.Parse("2021-09-01"), UpdatedOn=DateTime.Parse("2021-09-01"), FinishedOn=null, DueOn=DateTime.Parse("2021-12-01"), Status=TicketStatus.InProgress, Priority=TicketPriority.High},
-            new Ticket{ProjectID=1, Title="Develop Demo User feature", Description="Develop the Logic that enables 'DEMO' accounts", CreatedOn=DateTime.Parse("2021-09-01"), UpdatedOn=DateTime.Parse("2021-09-01"), FinishedOn=null, DueOn=DateTime.Parse("2021-12-01"), Status=TicketStatus.InProgress, Priority=TicketPriority.High}
+            new Ticket{ProjectID=1, Title="Develop Demo User feature", Description="Develop the Logic that enables 'DEMO' accounts", CreatedOn=DateTime.Parse("2021-09-01"), UpdatedOn=DateTime.Parse("2021-09-01"), FinishedOn=null, DueOn=DateTime.Parse("2021-12-01"), Status=TicketStatus.InProgress, Priority=TicketPriority.High},
+            new Ticket{ProjectID=2, Title="Initialze project", Description="Set up development environment", CreatedOn=DateTime.Parse("2021-09-01"), UpdatedOn=DateTime.Parse("2021-09-01"), FinishedOn=null, DueOn=DateTime.Parse("2021-12-01"), Status=TicketStatus.InProgress, Priority=TicketPriority.High},
+            new Ticket{ProjectID=2, Title="Write an SRS", Description="Specific Software Requirements", CreatedOn=DateTime.Parse("2021-09-01"), UpdatedOn=DateTime.Parse("2021-09-01"), FinishedOn=null, DueOn=DateTime.Parse("2021-12-01"), Status=TicketStatus.InProgress, Priority=TicketPriority.High},
+            new Ticket{ProjectID=3, Title="Initialze project", Description="Set up development environment", CreatedOn=DateTime.Parse("2021-09-01"), UpdatedOn=DateTime.Parse("2021-09-01"), FinishedOn=null, DueOn=DateTime.Parse("2021-12-01"), Status=TicketStatus.InProgress, Priority=TicketPriority.High},
+            new Ticket{ProjectID=3, Title="Write an SRS", Description="Specific Software Requirements", CreatedOn=DateTime.Parse("2021-09-01"), UpdatedOn=DateTime.Parse("2021-09-01"), FinishedOn=null, DueOn=DateTime.Parse("2021-12-01"), Status=TicketStatus.InProgress, Priority=TicketPriority.High},
+            new Ticket{ProjectID=3, Title="Design the architecture of the system", Description="Choose the backend architecture to handle large scale uses", CreatedOn=DateTime.Parse("2021-09-01"), UpdatedOn=DateTime.Parse("2021-09-01"), FinishedOn=null, DueOn=DateTime.Parse("2021-12-01"), Status=TicketStatus.InProgress, Priority=TicketPriority.High},
             };
             foreach (Ticket c in tickets)
             {
                 context.Tickets.Add(c);
+            }
+            context.SaveChanges();
+
+            var projectUsers = new ProjectAssignment[] {
+                new ProjectAssignment{
+                    UserID = users.Single(u => u.UserName == "Nino Olivetto").Id,
+                    ProjectID = projects.Single(p => p.Title == "Testing plateforme").Id
+                },
+                new ProjectAssignment{
+                    UserID = users.Single(u => u.UserName == "Meredith Alonso").Id,
+                    ProjectID = projects.Single(p => p.Title == "Messenger App").Id
+                },
+                new ProjectAssignment{
+                    UserID = users.Single(u => u.UserName == "Arturo Anand").Id,
+                    ProjectID = projects.Single(p => p.Title == "Testing plateforme").Id
+                },
+                new ProjectAssignment{
+                    UserID = users.Single(u => u.UserName == "Laura Norman").Id,
+                    ProjectID = projects.Single(p => p.Title == "Messenger App").Id
+                },
+                new ProjectAssignment{
+                    UserID = users.Single(u => u.UserName == "Carson Alexander").Id,
+                    ProjectID = projects.Single(p => p.Title == "Testing plateforme").Id
+                },
+                new ProjectAssignment{
+                    UserID = users.Single(u => u.UserName == "Gytis Barzdukas").Id,
+                    ProjectID = projects.Single(p => p.Title == "Testing plateforme").Id
+                },
+                new ProjectAssignment{
+                    UserID = users.Single(u => u.UserName == "Yan Li").Id,
+                    ProjectID = projects.Single(p => p.Title == "Messenger App").Id
+                },
+                new ProjectAssignment{
+                    UserID = users.Single(u => u.UserName == "Peggy Justice").Id,
+                    ProjectID = projects.Single(p => p.Title == "Messenger App").Id
+                },
+            };
+
+            foreach (ProjectAssignment pa in projectUsers)
+            {
+                context.ProjectAssignments.Add(pa);
+            }
+            context.SaveChanges();
+
+            var ticketUser = new TicketAssignment[]
+            {
+                new TicketAssignment{
+                    UserID = users.Single(u => u.UserName == "Arturo Anand").Id,
+                    TicketID = 8,
+                },
+                new TicketAssignment{
+                    UserID = users.Single(u => u.UserName == "Carson Alexander").Id,
+                    TicketID = 9,
+                },
+                new TicketAssignment{
+                    UserID = users.Single(u => u.UserName == "Laura Norman").Id,
+                    TicketID = 10,
+                },
+                new TicketAssignment{
+                    UserID = users.Single(u => u.UserName == "Yan Li").Id,
+                    TicketID = 11,
+                },
+                new TicketAssignment{
+                    UserID = users.Single(u => u.UserName == "Peggy Justice").Id,
+                    TicketID = 12,
+                },
+            };
+
+            foreach (TicketAssignment ta in ticketUser)
+            {
+                context.TicketAssignments.Add(ta);
             }
             context.SaveChanges();
 
