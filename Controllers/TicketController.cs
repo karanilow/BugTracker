@@ -77,7 +77,7 @@ namespace bugtracker.Controllers
             {
                 return NotFound();
             }
-
+            PopulateProjectsDropDownList();
             var ticket = await _context.Tickets.FindAsync(id);
             if (ticket == null)
             {
@@ -97,11 +97,11 @@ namespace bugtracker.Controllers
             {
                 return NotFound();
             }
-            var ticketToUpdate = await _context.Tickets.FindAsync(id);
+            var ticket = await _context.Tickets.FindAsync(id);
             if (await TryUpdateModelAsync<Ticket>(
-                ticketToUpdate,
+                ticket,
                 "",
-                s => s.Title, s => s.Status, s => s.Priority, s => s.DueOn))
+                s => s.Title, s => s.Status, s => s.Priority, s => s.ProjectID, s => s.DueOn))
             {
                 try
                 {
@@ -116,7 +116,8 @@ namespace bugtracker.Controllers
                         "see your system administrator.");
                 }
             }
-            return View(ticketToUpdate);
+            PopulateProjectsDropDownList(ticket.ProjectID);
+            return View(ticket);
         }
 
         // GET: Ticket/Delete/5

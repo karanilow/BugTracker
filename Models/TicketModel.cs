@@ -18,6 +18,7 @@ namespace bugtracker.Models
     {
         public int Id { get; set; }
         public int ProjectID { get; set; }
+        [Required]
         public string Title { get; set; }
         public string Description { get; set; }
         public TicketStatus Status { get; set; }
