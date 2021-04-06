@@ -20,6 +20,9 @@
                             <th>
                                 @Html.DisplayNameFor(model => model.Role)
                             </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ProjectAssignments)
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -30,8 +33,15 @@
                                     @Html.DisplayFor(modelItem => item.UserName)
                                 </td>
                                 <td>
-                                    <select asp-for="@item.Role" class="form-control"
-                                        asp-items="Html.GetEnumSelectList<UserRole>()"></select>
+                                    @* <select asp-for="@item.Role" class="form-control"
+                                        asp-items="Html.GetEnumSelectList<UserRole>()"></select> *@
+                                    @Html.DisplayFor(modelItem => item.Role)
+                                </td>
+                                <td>
+                                    @foreach (var project in item.ProjectAssignments)
+                                    {
+                                        @Html.DisplayFor(modelItem => project.Project.Title) <br />
+                                    }
                                 </td>
                             </tr>
                         }

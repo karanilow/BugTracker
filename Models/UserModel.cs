@@ -25,7 +25,9 @@ namespace bugtracker.Models
         [Display(Name = "Account Type")]
         public UserType Type { get; set; }
 
+        [Display(Name = "Assigned to")]
         public ICollection<TicketAssignment> TicketAssignments { get; set; }
+        [Display(Name = "Involve in")]
         public ICollection<ProjectAssignment> ProjectAssignments { get; set; }
 
     }

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using bugtracker.Data;
 using bugtracker.Models;
+using bugtracker.Models.BugtrackerViewModels;
 
 namespace bugtracker.Controllers
 {
@@ -28,7 +29,11 @@ namespace bugtracker.Controllers
         // GET: User/Roles
         public async Task<IActionResult> Roles()
         {
-            return View(await _context.Users.ToListAsync());
+            var users = _context.Users
+                .Include(u => u.ProjectAssignments)
+                    .ThenInclude(u => u.Project)
+                .AsNoTracking();
+            return View(await users.ToListAsync());
         }
 
         // GET: User/Details/5
@@ -38,15 +43,24 @@ namespace bugtracker.Controllers
             {
                 return NotFound();
             }
-
-            var user = await _context.Users
+            var viewModel = new UserDetailsData();
+            viewModel.User = await _context.Users
+                .Include(i => i.ProjectAssignments)
+                    .ThenInclude(i => i.Project)
+                .Include(i => i.TicketAssignments)
+                    .ThenInclude(i => i.Ticket)
+                .AsNoTracking()
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (user == null)
+
+            if (viewModel.User == null)
             {
                 return NotFound();
             }
 
-            return View(user);
+            viewModel.Projects = viewModel.User.ProjectAssignments.Select(s => s.Project);
+            viewModel.Tickets = viewModel.User.TicketAssignments.Select(s => s.Ticket);
+
+            return View(viewModel);
         }
 
         // GET: User/Create

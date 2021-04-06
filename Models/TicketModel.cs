@@ -34,7 +34,7 @@ namespace bugtracker.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime? DueOn { get; set; }
 
-
+        [Display(Name = "Part Of")]
         public Project Project { get; set; }
         public ICollection<TicketAssignment> TicketAssignments { get; set; }
         public TicketHistory TicketHistory { get; set; }

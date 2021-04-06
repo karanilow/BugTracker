@@ -22,8 +22,8 @@ namespace bugtracker.Controllers
         // GET: Ticket
         public async Task<IActionResult> Index()
         {
-            var bugtrackerContext = _context.Tickets.Include(t => t.Project);
-            return View(await bugtrackerContext.ToListAsync());
+            var tickets = _context.Tickets.Include(t => t.Project).AsNoTracking();
+            return View(await tickets.ToListAsync());
         }
 
         // GET: Ticket/Details/5
