@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -112,6 +114,16 @@ namespace bugtracker
                 };
             });
 
+            // Authorization filter, setting the fallback policy uses endpoint routing
+            // Require all users to be authenticated
+            services.AddControllers(config =>
+                {
+                    var policy = new AuthorizationPolicyBuilder()
+                                             .RequireAuthenticatedUser()
+                                             .Build();
+                    config.Filters.Add(new AuthorizeFilter(policy));
+                });
+
             // Add framework services.
             services.AddControllersWithViews();
         }
@@ -143,7 +155,7 @@ namespace bugtracker
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Dashboard}/{action=Index}/{Id?}");
+                    pattern: "{controller=Home}/{action=Index}/{Id?}");
             });
 
         }

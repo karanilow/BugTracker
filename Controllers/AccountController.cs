@@ -11,6 +11,8 @@ namespace bugtracker.Controllers
 {
     public class AccountController : Controller
     {
+
+        [AllowAnonymous]
         public async Task Login(string returnUrl = "/")
         {
             await HttpContext.ChallengeAsync("Auth0", new AuthenticationProperties() { RedirectUri = returnUrl });
@@ -24,7 +26,7 @@ namespace bugtracker.Controllers
                 // Indicate here where Auth0 should redirect the user after a logout.
                 // Note that the resulting absolute Uri must be added to the
                 // **Allowed Logout URLs** settings for the app.
-                RedirectUri = Url.Action("Index", "Dashboard")
+                RedirectUri = Url.Action("Index", "Home")
             });
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
         }
