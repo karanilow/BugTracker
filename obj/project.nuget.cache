@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Wo+8UNibZt908pN4N0engtpjE7NOPy4Fjub0BYy666xQGErMKYiiAqEyCkNBV7ZVj6tug5oPkYF7zGF+WHq1DQ==",
+  "dgSpecHash": "D7lrC8Ix0GCyMk8nnvbVHltceWunDbsC8+5BEpZFlq/5dl/VO6NOBVrqq/9bRcooebBpK7Pa9l9kztKd6BvE1g==",
   "success": true,
   "projectFilePath": "/home/nils/Developement/dotNET/bugtracker/bugtracker/bugtracker.csproj",
   "expectedPackageFiles": [
