@@ -58,7 +58,7 @@ namespace bugtracker.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProjectID,Title,Status,Priority,DueOn")] Ticket ticket)
+        public async Task<IActionResult> Create([Bind("ProjectID,Title,Status,Priority,DueOn,Description")] Ticket ticket)
         {
             if (ModelState.IsValid)
             {
@@ -77,12 +77,12 @@ namespace bugtracker.Controllers
             {
                 return NotFound();
             }
-            PopulateProjectsDropDownList();
-            var ticket = await _context.Tickets.FindAsync(id);
+            var ticket = await _context.Tickets.AsNoTracking().FirstOrDefaultAsync(t => t.Id == id);
             if (ticket == null)
             {
                 return NotFound();
             }
+            PopulateProjectsDropDownList();
             return View(ticket);
         }
 
@@ -101,7 +101,7 @@ namespace bugtracker.Controllers
             if (await TryUpdateModelAsync<Ticket>(
                 ticket,
                 "",
-                s => s.Title, s => s.Status, s => s.Priority, s => s.ProjectID, s => s.DueOn))
+                s => s.Title, s => s.Status, s => s.Priority, s => s.ProjectID, s => s.DueOn, s => s.Description))
             {
                 try
                 {
