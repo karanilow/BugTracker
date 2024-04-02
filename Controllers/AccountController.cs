@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Security.Claims;
 using System.Linq;
 using bugtracker.Models;
+using Auth0.AspNetCore.Authentication;
 
 namespace bugtracker.Controllers
 {
@@ -21,13 +22,14 @@ namespace bugtracker.Controllers
         [Authorize]
         public async Task Logout()
         {
-            await HttpContext.SignOutAsync("Auth0", new AuthenticationProperties
-            {
-                // Indicate here where Auth0 should redirect the user after a logout.
-                // Note that the resulting absolute Uri must be added to the
-                // **Allowed Logout URLs** settings for the app.
-                RedirectUri = Url.Action("Index", "Home")
-            });
+             var authenticationProperties = new LogoutAuthenticationPropertiesBuilder()
+            // Indicate here where Auth0 should redirect the user after a logout.
+            // Note that the resulting absolute Uri must be added to the
+            // **Allowed Logout URLs** settings for the app.
+            .WithRedirectUri(Url.Action("Index", "Home"))
+            .Build();
+
+            await HttpContext.SignOutAsync(Auth0Constants.AuthenticationScheme, authenticationProperties);
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
         }
 
