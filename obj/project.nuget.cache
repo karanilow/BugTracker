@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "N5hNXI7KbSpLQYKT15KmrPzlWbRIESVd81FmYTtT6nQMqS5q66QJWiLbjyP8c+SBEdyPJXKkfuyyDg0JVWKiqA==",
+  "dgSpecHash": "m3RU0RyoI1/7m7GIYZkQHPecCIfwDA57uA6MJZsi0cS4F1BAdGydWAqNOHujt/ZYY8wg+5gcgQqlX7g4LfLG0w==",
   "success": true,
-  "projectFilePath": "c:\\Users\\nilst\\Projects\\BugTracker\\bugtracker.csproj",
+  "projectFilePath": "C:\\Users\\nilst\\Projects\\BugTracker\\bugtracker.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\nilst\\.nuget\\packages\\auth0.aspnetcore.authentication\\1.4.1\\auth0.aspnetcore.authentication.1.4.1.nupkg.sha512",
     "C:\\Users\\nilst\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
