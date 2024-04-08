@@ -26,15 +26,20 @@ namespace bugtracker.Controllers
         public async Task<IActionResult> Index()
         {
             var viewModel = new DashboardIndexData();
-            viewModel.Tickets = await _context.Tickets.AsNoTracking().ToListAsync();
-            viewModel.TicketsInProgress = CountTickets(TicketStatus.InProgress, viewModel.Tickets);
-            viewModel.TicketsStuck = CountTickets(TicketStatus.Stuck, viewModel.Tickets);
+
+            var tickets = await _context.Tickets.AsNoTracking().ToListAsync();
+
+            viewModel.TicketsInProgressCount = tickets.Where(t => t.Status == TicketStatus.InProgress).Count();
+            viewModel.TicketsStuckCount = tickets.Where(t=>t.Status == TicketStatus.Stuck).Count();
+
             return View(viewModel);
         }
+
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
         private int CountTickets(TicketStatus ticketStatus, IEnumerable<Ticket> tickets)
         {
             var TicketsQuery = (from t in tickets

@@ -7,8 +7,7 @@ namespace bugtracker.Models.BugtrackerViewModels
 {
     public class DashboardIndexData
     {
-        public int TicketsInProgress { get; set; }
-        public int TicketsStuck { get; set; }
-        public IEnumerable<Ticket> Tickets { get; set; }
+        public int TicketsInProgressCount { get; set; }
+        public int TicketsStuckCount { get; set; }
     }
 }
