@@ -31,21 +31,13 @@ namespace bugtracker.Controllers
 
             viewModel.TicketsInProgressCount = tickets.Where(t => t.Status == TicketStatus.InProgress).Count();
             viewModel.TicketsStuckCount = tickets.Where(t=>t.Status == TicketStatus.Stuck).Count();
-
+            viewModel.TicketsOverdueCount = tickets.Where(t=>t.DueOn < DateTime.Now).Count();
             return View(viewModel);
         }
 
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
-
-        private int CountTickets(TicketStatus ticketStatus, IEnumerable<Ticket> tickets)
-        {
-            var TicketsQuery = (from t in tickets
-                                where t.Status == ticketStatus
-                                select t).Count();
-            return TicketsQuery;
         }
 
     }

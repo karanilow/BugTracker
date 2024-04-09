@@ -9,5 +9,6 @@ namespace bugtracker.Models.BugtrackerViewModels
     {
         public int TicketsInProgressCount { get; set; }
         public int TicketsStuckCount { get; set; }
+        public int TicketsOverdueCount { get; internal set; }
     }
 }

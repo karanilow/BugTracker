@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\nilst\\Projects\\BugTracker\\bugtracker.csproj": {}
+    "c:\\Users\\nilst\\Projects\\BugTracker\\bugtracker.csproj": {}
   },
   "projects": {
-    "C:\\Users\\nilst\\Projects\\BugTracker\\bugtracker.csproj": {
+    "c:\\Users\\nilst\\Projects\\BugTracker\\bugtracker.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\nilst\\Projects\\BugTracker\\bugtracker.csproj",
+        "projectUniqueName": "c:\\Users\\nilst\\Projects\\BugTracker\\bugtracker.csproj",
         "projectName": "bugtracker",
-        "projectPath": "C:\\Users\\nilst\\Projects\\BugTracker\\bugtracker.csproj",
+        "projectPath": "c:\\Users\\nilst\\Projects\\BugTracker\\bugtracker.csproj",
         "packagesPath": "C:\\Users\\nilst\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\nilst\\Projects\\BugTracker\\obj\\",
+        "outputPath": "c:\\Users\\nilst\\Projects\\BugTracker\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\nilst\\AppData\\Roaming\\NuGet\\NuGet.Config"
