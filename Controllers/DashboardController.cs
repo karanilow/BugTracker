@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
 using bugtracker.Data;
 using bugtracker.Models;
 using bugtracker.Models.BugtrackerViewModels;
@@ -26,12 +27,11 @@ namespace bugtracker.Controllers
         {
             var viewModel = new DashboardIndexData();
 
-            viewModel.TicketsInProgressCount = _context.Tickets.AsNoTracking().Where(t => t.Status == TicketStatus.InProgress).Count();
-            viewModel.TicketsStuckCount = _context.Tickets.AsNoTracking().Where(t => t.Status == TicketStatus.Stuck).Count();
-            viewModel.TicketsOverdueCount = _context.Tickets.AsNoTracking().Where(t => t.DueOn < DateTime.Now).Count();
+            var tickets = await _context.Tickets.AsNoTracking().ToListAsync();
 
-            var overdueTickets = await _context.Tickets.Where(t => t.DueOn < DateTime.Now).OrderByDescending(t=> t.DueOn).Take(20).ToListAsync();
-
+            viewModel.TicketsInProgressCount = tickets.Where(t => t.Status == TicketStatus.InProgress).Count();
+            viewModel.TicketsStuckCount = tickets.Where(t=>t.Status == TicketStatus.Stuck).Count();
+            viewModel.TicketsOverdueCount = tickets.Where(t=>t.DueOn < DateTime.Now).Count();
             return View(viewModel);
         }
 
