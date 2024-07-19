@@ -29,6 +29,7 @@ _UpgradeReport_Files/
 bin/
 obj/
 TestResults/
+.vs/
 ###################
 # Web publish log #
 ###################
@@ -56,6 +57,9 @@ TestResults/
 ######################
 *.log
 *.sqlite
+*.db
+*.db-shm
+*.db-wal
 # OS generated files #
 ######################
 .DS_Store?

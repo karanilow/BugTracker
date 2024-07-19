@@ -14,38 +14,22 @@
 <!-- Stats Row -->
 <div class="row">
 
-    <!-- Tickets in Progress Card -->
+
+    <!-- Tickets Overdue Card -->
     <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-left-primary shadow h-100 py-2">
+        <div class="card border-left-danger shadow h-100 py-2">
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                            Tickets in Progress</div>
+                        <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
+                            Important Tickets Overdue
+                        </div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800">
-                            @Model.TicketsInProgressCount
+                            @Model.ImportantTicketsOverdueCount
                         </div>
                     </div>
                     <div class="col-auto">
-                        <i class="fas fa-ticket-alt fa-2x text-gray-300"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Solving Time Card -->
-    <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-left-success shadow h-100 py-2">
-            <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                            Solving Time (Average)</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">2 Days</div>
-                    </div>
-                    <div class="col-auto">
-                        <i class="fas fa-stopwatch fa-2x text-gray-300"></i>
+                        <i class="fas fa-hourglass-half fa-2x text-gray-300"></i>
                     </div>
                 </div>
             </div>
@@ -59,7 +43,8 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                            Tickets Stuck</div>
+                            Tickets Stuck
+                        </div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800">
                             @Model.TicketsStuckCount
                         </div>
@@ -72,46 +57,67 @@
         </div>
     </div>
 
-    <!-- Tickets Overdue Card -->
+    <!-- Tickets in Progress Card -->
     <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-left-danger shadow h-100 py-2">
+        <div class="card border-left-primary shadow h-100 py-2">
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
-                            Tickets Overdue</div>
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                            Tickets in Progress
+                        </div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800">
-                            @Model.TicketsOverdueCount
+                            @Model.TicketsInProgressCount
                         </div>
                     </div>
                     <div class="col-auto">
-                        <i class="fas fa-hourglass-half fa-2x text-gray-300"></i>
+                        <i class="fas fa-ticket-alt fa-2x text-gray-300"></i>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    @*
+    <!-- Solving Time Card -->
+    <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+    <div class="card-body">
+    <div class="row no-gutters align-items-center">
+    <div class="col mr-2">
+    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+    Solving Time (Average)</div>
+    <div class="h5 mb-0 font-weight-bold text-gray-800">2 Days</div>
+    </div>
+    <div class="col-auto">
+    <i class="fas fa-stopwatch fa-2x text-gray-300"></i>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div> *@
+
+
 </div>
 
 <!-- Chart Row -->
 <div class="row">
-
+    @*
     <!-- History Chart -->
     <div class="col-xl-8 col-lg-7">
-        <div class="card shadow mb-4">
-            <!-- Card Header -->
-            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">Solving Time History</h6>
-            </div>
-            <!-- Card Body -->
-            <div class="card-body">
-                <div class="chart-area">
-                    <canvas id="myAreaChart"></canvas>
-                </div>
-            </div>
-        </div>
+    <div class="card shadow mb-4">
+    <!-- Card Header -->
+    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+    <h6 class="m-0 font-weight-bold text-primary">Solving Time History</h6>
     </div>
-
+    <!-- Card Body -->
+    <div class="card-body">
+    <div class="chart-area">
+    <canvas id="myAreaChart"></canvas>
+    </div>
+    </div>
+    </div>
+    </div>
+    *@
     <!-- Pie Chart -->
     <div class="col-xl-4 col-lg-5">
         <div class="card shadow mb-4">
@@ -122,7 +128,7 @@
             <!-- Card Body -->
             <div class="card-body">
                 <div class="chart-pie pt-4 pb-2">
-                    <canvas id="myPieChart"></canvas>
+                    <canvas id="singlePieChart"></canvas>
                 </div>
                 <div class="mt-4 text-center small">
                     <span class="mr-2">
@@ -134,12 +140,15 @@
                     <span class="mr-2">
                         <i class="fas fa-circle text-warning"></i> Stuck
                     </span>
+                    <span class="mr-2">
+                        <i class="fas fa-circle text-dark"></i> Finished
+                    </span>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
+@*
 <!-- Overdue Row -->
 <div class="row">
 
@@ -158,7 +167,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> *@
 
 
 <!-- Page level plugins -->
@@ -167,3 +176,39 @@
 <!-- Page level custom scripts -->
 <script src="js/demo/chart-area-demo.js"></script>
 <script src="js/demo/chart-pie-demo.js"></script>
+
+<script type="text/javascript">
+    var ctx = document.getElementById("singlePieChart");
+    var singlePieChart = new Chart(ctx, {
+        type: "doughnut",
+        data: {
+            labels: ["In Progress", "Waiting", "Stuck", "Finished"],
+            datasets: [
+                {
+                    data: [@Model.TicketsInProgressCount, @Model.TicketsWaitingCount, @Model.TicketsStuckCount, @Model.TicketsFinishedCount],
+                    backgroundColor: ["#4e73df", "#36b9cc", "#f6c23e", "#808080"],
+                    hoverBackgroundColor: ["#2e59d9", "#33a8b9", "#d2a73a", "#C5C5C5"],
+                    hoverBorderColor: "rgba(234, 236, 244, 1)",
+                },
+            ],
+        },
+        options: {
+            maintainAspectRatio: false,
+            tooltips: {
+                backgroundColor: "rgb(255,255,255)",
+                bodyFontColor: "#858796",
+                borderColor: "#dddfeb",
+                borderWidth: 1,
+                xPadding: 15,
+                yPadding: 15,
+                displayColors: false,
+                caretPadding: 10,
+            },
+            legend: {
+                display: false,
+            },
+            cutoutPercentage: 80,
+        },
+    });
+</script>
+

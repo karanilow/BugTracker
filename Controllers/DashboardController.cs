@@ -1,14 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using Microsoft.EntityFrameworkCore;
 using bugtracker.Data;
 using bugtracker.Models;
 using bugtracker.Models.BugtrackerViewModels;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using System;
+using System.Diagnostics;
+using System.Linq;
 
 namespace bugtracker.Controllers
 {
@@ -23,15 +21,22 @@ namespace bugtracker.Controllers
             _logger = logger;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
             var viewModel = new DashboardIndexData();
 
-            var tickets = await _context.Tickets.AsNoTracking().ToListAsync();
+            var statusCount = _context.Tickets
+                    .AsNoTracking().GroupBy(p => p.Status).Select(g => new { Status = g.Key, count = g.Count() }).ToList();
 
-            viewModel.TicketsInProgressCount = tickets.Where(t => t.Status == TicketStatus.InProgress).Count();
-            viewModel.TicketsStuckCount = tickets.Where(t=>t.Status == TicketStatus.Stuck).Count();
-            viewModel.TicketsOverdueCount = tickets.Where(t=>t.DueOn < DateTime.Now).Count();
+
+            viewModel.TicketsInProgressCount = statusCount.First(t => t.Status == TicketStatus.InProgress).count;
+            viewModel.TicketsStuckCount = statusCount.First(t => t.Status == TicketStatus.Stuck).count;
+            viewModel.TicketsWaitingCount = statusCount.First(t => t.Status == TicketStatus.Waiting).count;
+            viewModel.TicketsFinishedCount = statusCount.First(t => t.Status == TicketStatus.Finished).count;
+
+            viewModel.ImportantTicketsOverdueCount = _context.Tickets.AsNoTracking().Where(t => t.Priority == TicketPriority.High && t.DueOn < DateTime.Today).Count();
+
+
             return View(viewModel);
         }
 
