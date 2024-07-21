@@ -1,12 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using bugtracker.Data;
+using bugtracker.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using bugtracker.Data;
-using bugtracker.Models;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace bugtracker.Controllers
 {

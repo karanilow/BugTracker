@@ -4,6 +4,8 @@ using bugtracker.Models.Home;
 using bugtracker.Models.Projects;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
 using System.Linq;
@@ -27,7 +29,7 @@ namespace bugtracker.Controllers
         {
             var viewModel = new HomeViewModel();
 
-            viewModel.Projects = _context.Projects.Select(p => new ProjectItemViewModel(p)).ToList();
+            PopulateProjectsDropDownList();
 
             return View(viewModel);
         }
@@ -50,6 +52,14 @@ namespace bugtracker.Controllers
         {
             Response.StatusCode = 404;
             return View();
+        }
+
+        private void PopulateProjectsDropDownList(object selectedProject = null)
+        {
+            var ProjectQuery = from p in _context.Projects
+                               orderby p.Title
+                               select p;
+            ViewBag.ProjectID = new SelectList(ProjectQuery.AsNoTracking(), "Id", "Title", selectedProject);
         }
     }
 }
