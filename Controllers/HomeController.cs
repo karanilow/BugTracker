@@ -23,11 +23,11 @@ namespace bugtracker.Controllers
 
         private readonly IMemoryCache _cache;
 
-        public HomeController(ILogger<HomeController> logger, BugtrackerContext context, IMemoryCache memoryCache)
+        public HomeController(ILogger<HomeController> logger, BugtrackerContext context, IMemoryCache cache)
         {
             _context = context;
             _logger = logger;
-            _cache = memoryCache;
+            _cache = cache;
         }
 
         [AllowAnonymous]

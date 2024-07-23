@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using bugtracker.Data;
 using bugtracker.Models;
 using bugtracker.Models.BugtrackerViewModels;
+using Microsoft.Extensions.Caching.Memory;
+using bugtracker.Models.CacheObjects;
 
 namespace bugtracker.Controllers
 {
@@ -15,14 +17,18 @@ namespace bugtracker.Controllers
     {
         private readonly BugtrackerContext _context;
 
-        public UserController(BugtrackerContext context)
+        private readonly IMemoryCache _cache;
+
+        public UserController(BugtrackerContext context, IMemoryCache cache)
         {
             _context = context;
+            _cache = cache;
         }
 
         // GET: User
         public async Task<IActionResult> Index()
         {
+            ViewBag.ProjectList = new SelectList(CacheObjects.GetProjectList(_context, _cache), "Id", "Title", null);
             return View(await _context.Users.ToListAsync());
         }
 
@@ -33,6 +39,7 @@ namespace bugtracker.Controllers
                 .Include(u => u.ProjectAssignments)
                     .ThenInclude(u => u.Project)
                 .AsNoTracking();
+            ViewBag.ProjectList = new SelectList(CacheObjects.GetProjectList(_context, _cache), "Id", "Title", null);
             return View(await users.ToListAsync());
         }
 

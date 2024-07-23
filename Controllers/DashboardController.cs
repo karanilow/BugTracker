@@ -1,8 +1,11 @@
 using bugtracker.Data;
 using bugtracker.Models;
 using bugtracker.Models.BugtrackerViewModels;
+using bugtracker.Models.CacheObjects;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Diagnostics;
@@ -14,11 +17,13 @@ namespace bugtracker.Controllers
     {
         private readonly BugtrackerContext _context;
         private readonly ILogger<DashboardController> _logger;
+        private readonly IMemoryCache _cache;
 
-        public DashboardController(ILogger<DashboardController> logger, BugtrackerContext context)
+        public DashboardController(ILogger<DashboardController> logger, BugtrackerContext context, IMemoryCache cache)
         {
             _context = context;
             _logger = logger;
+            _cache = cache;
         }
 
         public IActionResult Index()
@@ -36,6 +41,8 @@ namespace bugtracker.Controllers
 
             viewModel.ImportantTicketsOverdueCount = _context.Tickets.AsNoTracking().Where(t => t.Priority == TicketPriority.High && t.DueOn < DateTime.Today).Count();
 
+
+            ViewBag.ProjectList = new SelectList(CacheObjects.GetProjectList(_context, _cache), "Id", "Title", null);
 
             return View(viewModel);
         }
