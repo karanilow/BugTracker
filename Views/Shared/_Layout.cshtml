@@ -116,12 +116,7 @@
                     </button>
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <ul class="breadcrumb navbar-nav ml-auto">
-                            <li class="breadcrumb-item nav-item">Your Projects</li>
-                            <li class="breadcrumb-item nav-item active">
-                                <select class="form-control" asp-items="ViewBag.ProjectID"></select>
-                            </li>
-                        </ul>
+                        <select class="form-control" asp-items="ViewBag.ProjectList"></select>
                     }
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">

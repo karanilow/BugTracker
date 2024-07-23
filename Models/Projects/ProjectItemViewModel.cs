@@ -10,10 +10,13 @@ namespace bugtracker.Models.Projects
 
             Title = p.Title;
             Description = p.Description;
+            Id = p.Id;
         }
+        public int Id { get; set; }
 
         public string Title { get; set; }
 
         public string Description { get; set; }
+
     }
 }

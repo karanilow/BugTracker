@@ -6,7 +6,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 
@@ -18,16 +21,21 @@ namespace bugtracker.Controllers
 
         private readonly BugtrackerContext _context;
 
-        public HomeController(ILogger<HomeController> logger, BugtrackerContext context)
+        private readonly IMemoryCache _cache;
+
+        public HomeController(ILogger<HomeController> logger, BugtrackerContext context, IMemoryCache memoryCache)
         {
             _context = context;
             _logger = logger;
+            _cache = memoryCache;
         }
 
         [AllowAnonymous]
         public IActionResult Index()
         {
             var viewModel = new HomeViewModel();
+
+            viewModel.Projects = _context.Projects.Select(p => new ProjectItemViewModel(p)).ToList();
 
             PopulateProjectsDropDownList();
 
@@ -56,10 +64,15 @@ namespace bugtracker.Controllers
 
         private void PopulateProjectsDropDownList(object selectedProject = null)
         {
-            var ProjectQuery = from p in _context.Projects
-                               orderby p.Title
-                               select p;
-            ViewBag.ProjectID = new SelectList(ProjectQuery.AsNoTracking(), "Id", "Title", selectedProject);
+            List<ProjectItemViewModel> projectList;
+            if (!_cache.TryGetValue("ProjectList", out projectList))
+            {
+                projectList = _context.Projects.OrderBy(p => p.Title).Select(p => new ProjectItemViewModel(p)).ToList();
+                _cache.Set("ProjectList", projectList, TimeSpan.FromMinutes(10));
+            }
+
+            ViewBag.ProjectList = new SelectList(projectList, "Id", "Title", selectedProject);
+
         }
     }
 }
