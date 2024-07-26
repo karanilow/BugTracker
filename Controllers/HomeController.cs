@@ -21,13 +21,10 @@ namespace bugtracker.Controllers
 
         private readonly BugtrackerContext _context;
 
-        private readonly IMemoryCache _cache;
-
-        public HomeController(ILogger<HomeController> logger, BugtrackerContext context, IMemoryCache cache)
+        public HomeController(ILogger<HomeController> logger, BugtrackerContext context)
         {
             _context = context;
             _logger = logger;
-            _cache = cache;
         }
 
         [AllowAnonymous]
@@ -36,8 +33,6 @@ namespace bugtracker.Controllers
             var viewModel = new HomeViewModel();
 
             viewModel.Projects = _context.Projects.Select(p => new ProjectItemViewModel(p)).ToList();
-
-            PopulateProjectsDropDownList();
 
             return View(viewModel);
         }
@@ -60,19 +55,6 @@ namespace bugtracker.Controllers
         {
             Response.StatusCode = 404;
             return View();
-        }
-
-        private void PopulateProjectsDropDownList(object selectedProject = null)
-        {
-            List<ProjectItemViewModel> projectList;
-            if (!_cache.TryGetValue("ProjectList", out projectList))
-            {
-                projectList = _context.Projects.OrderBy(p => p.Title).Select(p => new ProjectItemViewModel(p)).ToList();
-                _cache.Set("ProjectList", projectList, TimeSpan.FromMinutes(10));
-            }
-
-            ViewBag.ProjectList = new SelectList(projectList, "Id", "Title", selectedProject);
-
         }
     }
 }
