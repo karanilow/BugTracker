@@ -26,6 +26,7 @@ namespace bugtracker.Controllers
             _cache = cache;
         }
 
+        // GET: Dashboard
         public IActionResult Index()
         {
             var viewModel = new DashboardIndexData();

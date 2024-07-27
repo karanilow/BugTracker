@@ -207,23 +207,3 @@
         },
     });
 </script>
-
-
-@section Scripts {
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $("#projectList").change(function () {
-                var selectedValue = $(this).val();
-                $.ajax({
-                    url: "/Dashboard/Test",
-                    type: "POST",
-                    data: { selectedValue: selectedValue },
-                    success: function (result) {
-                        alert("result");
-                    }
-                });
-            });
-        });
-    </script>
-}
-

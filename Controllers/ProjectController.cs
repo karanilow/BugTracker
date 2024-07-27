@@ -31,7 +31,7 @@ namespace bugtracker.Controllers
             return View(await _context.Projects.ToListAsync());
         }
 
-        // GET: Project/{id}
+        // GET: Project/Dashboard/{id}
         public IActionResult Dashboard(int id)
         {
             var project = _context.Projects
@@ -56,7 +56,7 @@ namespace bugtracker.Controllers
             viewModel.ImportantTicketsOverdueCount = project.Tickets.Where(t => t.Priority == TicketPriority.High && t.DueOn < DateTime.Today).Count();
 
 
-            ViewBag.ProjectList = new SelectList(CacheObjects.GetProjectList(_context, _cache), "Id", "Title", null);
+            ViewBag.ProjectList = new SelectList(CacheObjects.GetProjectList(_context, _cache), "Id", "Title", id);
 
             return View(viewModel);
         }

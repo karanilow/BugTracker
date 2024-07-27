@@ -116,7 +116,7 @@
                     </button>
                     @if (User.Identity.IsAuthenticated && controller != "Home")
                     {
-                        <select class="form-control" asp-items="ViewBag.ProjectList"></select>
+                        <select id="projectList" class="form-control" asp-items="ViewBag.ProjectList"></select>
                     }
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -220,6 +220,16 @@
 
     <!-- Page level custom scripts -->
     <script src="~/js/demo/datatables-demo.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#projectList").change(function () {
+                var selectedValue = $(this).val();
+                var controllerUrl = "/Project/Dashboard/" + selectedValue; // URL du contrôleur et paramètre
+                window.location.href = controllerUrl; // Redirigez vers le contrôleur
+            });
+        });
+    </script>
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>
