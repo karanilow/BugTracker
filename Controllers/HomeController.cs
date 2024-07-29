@@ -1,12 +1,17 @@
-﻿using System;
+﻿using bugtracker.Data;
+using bugtracker.Models;
+using bugtracker.Models.Home;
+using bugtracker.Models.Projects;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using Microsoft.AspNetCore.Authorization;
-using bugtracker.Models;
 
 namespace bugtracker.Controllers
 {
@@ -14,15 +19,22 @@ namespace bugtracker.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private readonly BugtrackerContext _context;
+
+        public HomeController(ILogger<HomeController> logger, BugtrackerContext context)
         {
+            _context = context;
             _logger = logger;
         }
 
         [AllowAnonymous]
         public IActionResult Index()
         {
-            return View();
+            var viewModel = new HomeViewModel();
+
+            viewModel.Projects = _context.Projects.Select(p => new ProjectItemViewModel(p)).ToList();
+
+            return View(viewModel);
         }
 
         [AllowAnonymous]

@@ -1,16 +1,47 @@
-﻿@{
+﻿@model bugtracker.Models.Home.HomeViewModel
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
     @if (User.Identity.IsAuthenticated)
     {
-        <h1 class="display-4">🔓 You're logged in</h1>
+        <h5>🔓 You're logged in</h5>
         <p>Welcome @User.Identity.Name, hope you're enjoying the experience today !</p>
     }
     else
     {
         <h1 class="display-4">Welcome to the BugTracker</h1>
         <p>Please <a asp-controller="Account" asp-action="Login">login</a> to use the app</p>
+
     }
 </div>
+@if (User.Identity.IsAuthenticated)
+{
+
+    <h1>List of your Projects</h1>
+
+    <div class="row">
+        @for (int i = 0; i < Model.Projects.Count(); i++)
+        {
+            <!-- Tickets Overdue Card -->
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="font-weight-bold text-primary text-uppercase mb-1">
+                                    @Model.Projects[i].Title
+                                </div>
+                                <div class="text-xs mb-0 font-weight-bold text-gray-800">
+                                    @Model.Projects[i].Description
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+}

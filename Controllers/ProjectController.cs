@@ -1,12 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using bugtracker.Data;
+using bugtracker.Models;
+using bugtracker.Models.CacheObjects;
+using bugtracker.Models.Projects;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using bugtracker.Data;
-using bugtracker.Models;
+using Microsoft.Extensions.Caching.Memory;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace bugtracker.Controllers
 {
@@ -14,15 +16,49 @@ namespace bugtracker.Controllers
     {
         private readonly BugtrackerContext _context;
 
-        public ProjectController(BugtrackerContext context)
+        private readonly IMemoryCache _cache;
+
+        public ProjectController(BugtrackerContext context, IMemoryCache cache)
         {
             _context = context;
+            _cache = cache;
         }
 
         // GET: Project
         public async Task<IActionResult> Index()
         {
+            ViewBag.ProjectList = new SelectList(CacheObjects.GetProjectList(_context, _cache), "Id", "Title", null);
             return View(await _context.Projects.ToListAsync());
+        }
+
+        // GET: Project/Dashboard/{id}
+        public IActionResult Dashboard(int id)
+        {
+            var project = _context.Projects
+                                .Include(t => t.Tickets)
+                                .AsNoTracking()
+                                .FirstOrDefault(m => m.Id == id);
+
+            if (project == null)
+            {
+                return NotFound();
+            }
+
+            var viewModel = new ProjectDashboardViewModel(project);
+
+            var statusCount = project.Tickets.GroupBy(p => p.Status).Select(g => new { Status = g.Key, count = g.Count() });
+
+            viewModel.TicketsInProgressCount = statusCount.FirstOrDefault(t => t.Status == TicketStatus.InProgress)?.count ?? 0;
+            viewModel.TicketsStuckCount = statusCount.FirstOrDefault(t => t.Status == TicketStatus.Stuck)?.count ?? 0;
+            viewModel.TicketsWaitingCount = statusCount.FirstOrDefault(t => t.Status == TicketStatus.Waiting)?.count ?? 0;
+            viewModel.TicketsFinishedCount = statusCount.FirstOrDefault(t => t.Status == TicketStatus.Finished)?.count ?? 0;
+
+            viewModel.ImportantTicketsOverdueCount = project.Tickets.Where(t => t.Priority == TicketPriority.High && t.DueOn < DateTime.Today).Count();
+
+
+            ViewBag.ProjectList = new SelectList(CacheObjects.GetProjectList(_context, _cache), "Id", "Title", id);
+
+            return View(viewModel);
         }
 
         // GET: Project/Details/5

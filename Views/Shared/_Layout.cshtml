@@ -12,9 +12,8 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link href="~/lib/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
 
 </head>
 
@@ -28,7 +27,7 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" asp-area="" asp-controller="Home"
-                asp-action="Index">
+               asp-action="Index">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -38,13 +37,13 @@
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item @(controller == "Dashboard" ? "active" : "" )">
-                <a class="nav-link" asp-area="" asp-controller="Dashboard" asp-action="Index">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
+            <!-- Nav Item - Home -->
+            <li class="nav-item @(controller == "Home" ? "active" : "" )">
+                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
             </li>
-
 
             <!-- Divider -->
             <hr class="sidebar-divider">
@@ -54,19 +53,12 @@
                 Data
             </div>
 
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item @(controller == "Project" ? "active" : "" )">
-                <a class="nav-link collapsed" asp-area="" asp-controller="Project" asp-action="Index">
-                    <i class="fas fa-tasks"></i>
-                    <span>Projects</span>
-                </a>
-            </li>
-
             <!-- Nav Item - Charts -->
             <li class="nav-item @(controller == "Ticket" ? "active" : "" )">
                 <a class="nav-link" asp-area="" asp-controller="Ticket" asp-action="Index">
                     <i class="fas fa-ticket-alt"></i>
-                    <span>Tickets</span></a>
+                    <span>Tickets</span>
+                </a>
             </li>
 
             <!-- Divider -->
@@ -78,9 +70,17 @@
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item @(controller == "Project" ? "active" : "" )">
+                <a class="nav-link collapsed" asp-area="" asp-controller="Project" asp-action="Index">
+                    <i class="fas fa-tasks"></i>
+                    <span>Projects</span>
+                </a>
+            </li>
+
+            <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item @(controller == "User" ? "active" : "" )">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
+                   aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-users-cog"></i>
                     <span>Users Management</span>
                 </a>
@@ -102,7 +102,6 @@
             </div>
         </ul>
         <!-- End of Sidebar -->
-
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
 
@@ -114,7 +113,10 @@
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
                     </button>
-
+                    @if (User.Identity.IsAuthenticated && controller != "Home")
+                    {
+                        <select id="projectList" class="form-control" asp-items="ViewBag.ProjectList"></select>
+                    }
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Nav Item - User Information -->
@@ -122,14 +124,16 @@
                         {
                             <li class="nav-item dropdown no-arrow">
                                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">Hello
-                                        @User.Identity.Name!</span>
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                                        Hello
+                                        @User.Identity.Name!
+                                    </span>
                                     <img class="img-profile rounded-circle" src="~/img/undraw_profile.svg">
                                 </a>
                                 <!-- Dropdown - User Information -->
                                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                    aria-labelledby="userDropdown">
+                                     aria-labelledby="userDropdown">
                                     <a class="dropdown-item" asp-controller="Account" asp-action="Profile">
                                         <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                         Profile
@@ -144,7 +148,7 @@
                                     </a>
                                     <div class="dropdown-divider"></div>
                                     <a id="qsLogoutBtn" class="dropdown-item" href="#" data-toggle="modal"
-                                        data-target="#logoutModal">
+                                       data-target="#logoutModal">
                                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                         Logout
                                     </a>
@@ -159,7 +163,6 @@
                     </ul>
                 </nav>
                 <!-- End of Topbar -->
-
                 <!-- Begin Page Content -->
                 <div class="container">
                     <main role="main" class="pb-3">
@@ -169,7 +172,6 @@
                 <!-- End of Page Content -->
             </div>
             <!-- End of Main Content -->
-
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
@@ -183,10 +185,9 @@
         <!-- End of Content Wrapper -->
     </div>
     <!-- End of Page Wrapper -->
-
     <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -218,6 +219,16 @@
 
     <!-- Page level custom scripts -->
     <script src="~/js/demo/datatables-demo.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#projectList").change(function () {
+                var selectedValue = $(this).val();
+                var controllerUrl = "/Project/Dashboard/" + selectedValue; // URL du contrôleur et paramètre
+                window.location.href = controllerUrl; // Redirigez vers le contrôleur
+            });
+        });
+    </script>
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>
