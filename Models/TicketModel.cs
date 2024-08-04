@@ -14,6 +14,10 @@ namespace bugtracker.Models
     {
         High, Medium, Low, None
     }
+    public enum TicketDeliveryStatus
+    {
+        Any, OnTime, Overdue
+    }
     public class Ticket
     {
         public int Id { get; set; }
@@ -39,5 +43,6 @@ namespace bugtracker.Models
         public Project Project { get; set; }
         public ICollection<TicketAssignment> TicketAssignments { get; set; }
         public TicketHistory TicketHistory { get; set; }
+
     }
 }
