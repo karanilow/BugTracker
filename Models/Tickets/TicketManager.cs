@@ -41,6 +41,11 @@ namespace bugtracker.Models.Tickets
                     break;
             }
 
+            if (searchCriteria.Priority != TicketPriority.None) 
+            {
+                query = query.Where(t => t.Priority == searchCriteria.Priority);
+            }
+
             return query.ToList();
         }
     }

@@ -6,5 +6,7 @@
 
         public TicketDeliveryStatus DeliveryStatus { get; set; }
 
+        public TicketPriority Priority { get; set; }
+
     }
 }

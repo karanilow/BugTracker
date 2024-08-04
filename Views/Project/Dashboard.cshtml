@@ -14,7 +14,7 @@
 
     <!-- Tickets Overdue Card -->
     <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-left-danger shadow h-100 py-2">
+        <div class="card border-left-danger shadow h-100 py-2" role="button" onclick="window.location.href = '/Ticket?ProjectId=@Model.Project.Id&@nameof(@Model.TicketListSearchCriteria.DeliveryStatus)=2&@nameof(@Model.TicketListSearchCriteria.Priority)=High'">
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
