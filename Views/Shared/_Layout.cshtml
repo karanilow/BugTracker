@@ -1,6 +1,9 @@
 ﻿@using System.Web;
+@using System.Linq;
 @{
     string controller = Context.Request.RouteValues["controller"].ToString();
+    SelectList list = ViewBag.ProjectList;
+    string projectId = list?.FirstOrDefault(p => p.Selected == true)?.Value ?? null;
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -55,6 +58,13 @@
                 <div class="sidebar-heading">
                     Data
                 </div>
+                <!-- Nav Item - Dashboard -->
+                <li class="nav-item @(controller == "Dashboard" ? "active" : "" )">
+                    <a class="nav-link" asp-area="" asp-controller="Dashboard" asp-action="Project" asp-route-id="@(projectId)">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
 
                 <!-- Nav Item - Charts -->
                 <li class="nav-item @(controller == "Ticket" ? "active" : "" )">
@@ -228,7 +238,7 @@
         $(document).ready(function () {
             $("#projectList").change(function () {
                 var selectedValue = $(this).val();
-                var controllerUrl = "/Project/Dashboard/" + selectedValue; // URL du contrôleur et paramètre
+                var controllerUrl = "/Dashboard/Project/" + selectedValue; // URL du contrôleur et paramètre
                 window.location.href = controllerUrl; // Redirigez vers le contrôleur
             });
         });
