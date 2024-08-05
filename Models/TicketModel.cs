@@ -8,11 +8,11 @@ namespace bugtracker.Models
 {
     public enum TicketStatus
     {
-        Waiting, InProgress, Stuck, Finished
+        Any, Waiting, InProgress, Stuck, Finished
     }
     public enum TicketPriority
     {
-        High, Medium, Low, None
+        None, Low, Medium, High
     }
     public enum TicketDeliveryStatus
     {

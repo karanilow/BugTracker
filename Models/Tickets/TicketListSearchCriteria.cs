@@ -8,5 +8,7 @@
 
         public TicketPriority Priority { get; set; }
 
+        public TicketStatus Status { get; set; }
+
     }
 }

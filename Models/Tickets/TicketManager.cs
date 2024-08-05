@@ -46,6 +46,11 @@ namespace bugtracker.Models.Tickets
                 query = query.Where(t => t.Priority == searchCriteria.Priority);
             }
 
+            if (searchCriteria.Status != TicketStatus.Any)
+            {
+                query = query.Where(t => t.Status == searchCriteria.Status);
+            }
+
             return query.ToList();
         }
     }
