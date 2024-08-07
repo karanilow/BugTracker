@@ -24,11 +24,23 @@ namespace bugtracker.Controllers
         }
 
         // GET: Ticket
-        public async Task<IActionResult> Index([FromQuery] TicketListSearchCriteria searchCriteria)
+        public IActionResult Index([FromQuery] TicketListSearchCriteria searchCriteria)
         {
             ViewBag.ProjectList = new SelectList(CacheObjects.GetProjectList(_context, _cache), "Id", "Title", searchCriteria?.ProjectId);
             TicketManager manager = new TicketManager(_context);
-            return View(manager.GetTickets(searchCriteria));
+            return View("Index", manager.GetTickets(searchCriteria));
+        }
+
+        // GET Ticket/Project/{id}
+        public IActionResult Project(int id)
+        {
+            var project = _context.Projects.Where(p => p.Id == id).FirstOrDefault();
+            if (project == null)
+            {
+                return NotFound();
+            }
+
+            return Index(new TicketListSearchCriteria() { ProjectId = id });
         }
 
         // GET: Ticket/Details/5

@@ -68,7 +68,7 @@
 
                 <!-- Nav Item - Charts -->
                 <li class="nav-item @(controller == "Ticket" ? "active" : "" )">
-                    <a class="nav-link" asp-area="" asp-controller="Ticket" asp-action="Index">
+                    <a class="nav-link" asp-area="" asp-controller="Ticket" asp-action="Project" asp-route-id="@(projectId)">
                         <i class="fas fa-ticket-alt"></i>
                         <span>Tickets</span>
                     </a>
