@@ -1,6 +1,7 @@
 using bugtracker.Data;
 using bugtracker.Models;
 using bugtracker.Models.CacheObjects;
+using bugtracker.Models.Tickets;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -23,11 +24,23 @@ namespace bugtracker.Controllers
         }
 
         // GET: Ticket
-        public async Task<IActionResult> Index()
+        public IActionResult Index([FromQuery] TicketListSearchCriteria searchCriteria)
         {
-            var tickets = _context.Tickets.Include(t => t.Project).AsNoTracking();
-            ViewBag.ProjectList = new SelectList(CacheObjects.GetProjectList(_context, _cache), "Id", "Title", null);
-            return View(await tickets.ToListAsync());
+            ViewBag.ProjectList = new SelectList(CacheObjects.GetProjectList(_context, _cache), "Id", "Title", searchCriteria?.ProjectId);
+            TicketManager manager = new TicketManager(_context);
+            return View("Index", manager.GetTickets(searchCriteria));
+        }
+
+        // GET Ticket/Project/{id}
+        public IActionResult Project(int id)
+        {
+            var project = _context.Projects.Where(p => p.Id == id).FirstOrDefault();
+            if (project == null)
+            {
+                return NotFound();
+            }
+
+            return Index(new TicketListSearchCriteria() { ProjectId = id });
         }
 
         // GET: Ticket/Details/5

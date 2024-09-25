@@ -1,4 +1,6 @@
-﻿namespace bugtracker.Models.Projects
+﻿using bugtracker.Models.Tickets;
+
+namespace bugtracker.Models.Projects
 {
     public class ProjectDashboardViewModel
     {
@@ -15,5 +17,6 @@
         public int TicketsWaitingCount { get; internal set; }
         public int TicketsFinishedCount { get; internal set; }
 
+        public TicketListSearchCriteria TicketListSearchCriteria { get; set; }
     }
 }

@@ -8,11 +8,15 @@ namespace bugtracker.Models
 {
     public enum TicketStatus
     {
-        Waiting, InProgress, Stuck, Finished
+        Any, Waiting, InProgress, Stuck, Finished
     }
     public enum TicketPriority
     {
-        High, Medium, Low, None
+        None, Low, Medium, High
+    }
+    public enum TicketDeliveryStatus
+    {
+        Any, OnTime, Overdue
     }
     public class Ticket
     {
@@ -39,5 +43,6 @@ namespace bugtracker.Models
         public Project Project { get; set; }
         public ICollection<TicketAssignment> TicketAssignments { get; set; }
         public TicketHistory TicketHistory { get; set; }
+
     }
 }
