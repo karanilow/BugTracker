@@ -11,11 +11,13 @@ This tool allows you to create, assign and track tasks or issues during the life
 ```bash
  git clone https://github.com/karanilow/BugTracker.git
 ```
-3. Run the application in Visual Studio or use `dotnet run` in the `BugTracker` folder.
+3. Set the `connexion strings` for the SQLlite database or your favorite Database, and the Auth0 details of your account in the `appsettings.json` file. Visit the [Auth0 website](https://auth0.com/) for more informations.
+
+4. Run the application in Visual Studio or use `dotnet run` in the `BugTracker` folder.
 
 ![Image of the Home screeen](Images/Home.png)
 
-4. Create an account and sign in
+5. Create an account and sign in
 
 ![Image of the Login](Images/Login.png)
 
