@@ -13,13 +13,15 @@ This tool allows you to create, assign and track tasks or issues during the life
 ```
 3. Run the application in Visual Studio or use `dotnet run` in the `BugTracker` folder.
 
-![Image of the Home screeen](url to the image you want to include)
+![Image of the Home screeen](Images/Home.png)
 
 4. Create an account and sign in
 
-![Image of the Login](url to the image you want to include)
+![Image of the Login](Images/Login.png)
 
-![Image of the Dashboard](url to the image you want to include)
+![Image of the Home signed in](Images/Home_SignIn.png)
+
+![Image of the Dashboard](Images/Dashboard.png)
 
 ## Features
 
