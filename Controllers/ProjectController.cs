@@ -1,12 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using bugtracker.Data;
+using bugtracker.Models;
+using bugtracker.Models.CacheObjects;
+using bugtracker.Models.Projects;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using bugtracker.Data;
-using bugtracker.Models;
+using Microsoft.Extensions.Caching.Memory;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace bugtracker.Controllers
 {
@@ -14,17 +16,21 @@ namespace bugtracker.Controllers
     {
         private readonly BugtrackerContext _context;
 
-        public ProjectController(BugtrackerContext context)
+        private readonly IMemoryCache _cache;
+
+        public ProjectController(BugtrackerContext context, IMemoryCache cache)
         {
             _context = context;
+            _cache = cache;
         }
 
         // GET: Project
         public async Task<IActionResult> Index()
         {
+            ViewBag.ProjectList = new SelectList(CacheObjects.GetProjectList(_context, _cache), "Id", "Title", null);
             return View(await _context.Projects.ToListAsync());
         }
-
+       
         // GET: Project/Details/5
         public async Task<IActionResult> Details(int? id)
         {
