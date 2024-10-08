@@ -76,7 +76,7 @@ namespace bugtracker
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
                     NameClaimType = "name",
-                    RoleClaimType = "https://schemas.quickstarts.com/roles"
+                    RoleClaimType = "http://schemas.microsoft.com/ws/2008/06/identity/claims/roles"
                 };
 
                 // Set the callback path, so Auth0 will call back to http://localhost:3000/callback
