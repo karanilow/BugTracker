@@ -18,14 +18,14 @@ namespace bugtracker.Data
 
             var users = new User[]
             {
-            new User{UserName="Nino Olivetto",Email="nino@hotmail.com", Role=UserRole.ADMIN, Type=UserType.Regular},
-            new User{UserName="Meredith Alonso",Email="alonso98@hotmail.com", Role=UserRole.ADMIN, Type=UserType.Regular},
-            new User{UserName="Arturo Anand",Email="aanand@msn.com", Role=UserRole.PM, Type=UserType.Regular},
-            new User{UserName="Laura Norman",Email="l.norman@gmail.com", Role=UserRole.PM, Type=UserType.Regular},
-            new User{UserName="Carson Alexander",Email="carson56@outlook.com", Role=UserRole.DEV, Type=UserType.Regular},
-            new User{UserName="Gytis Barzdukas",Email="gytis.barzdukas@yahoo.com", Role=UserRole.DEV, Type=UserType.Regular},
-            new User{UserName="Yan Li",Email="yan.li98@hotmail.com", Role=UserRole.DEV, Type=UserType.Regular},
-            new User{UserName="Peggy Justice",Email="peggy@gmail.com", Role=UserRole.DEV, Type=UserType.Regular},
+                new User{AuthenticatedId="Auth0 | 123465789", UserName="Nino Olivetto",Email="nino@hotmail.com", Role=UserRole.ADMIN, Type=UserType.Regular},
+                new User{AuthenticatedId="Auth0 | 1234657891", UserName="Meredith Alonso",Email="alonso98@hotmail.com", Role=UserRole.ADMIN, Type=UserType.Regular},
+                new User{AuthenticatedId="Auth0 | 12346578912", UserName="Arturo Anand",Email="aanand@msn.com", Role=UserRole.PM, Type=UserType.Regular},
+                new User{AuthenticatedId="Auth0 | 12346578913", UserName="Laura Norman",Email="l.norman@gmail.com", Role=UserRole.PM, Type=UserType.Regular},
+                new User{AuthenticatedId="Auth0 | 12346578914", UserName="Carson Alexander",Email="carson56@outlook.com", Role=UserRole.DEV, Type=UserType.Regular},
+                new User{AuthenticatedId="Auth0 | 12346578915", UserName="Gytis Barzdukas",Email="gytis.barzdukas@yahoo.com", Role=UserRole.DEV, Type=UserType.Regular},
+                new User{AuthenticatedId="Auth0 | 12346578916", UserName="Yan Li",Email="yan.li98@hotmail.com", Role=UserRole.DEV, Type=UserType.Regular},
+                new User{AuthenticatedId="Auth0 | 12346578917", UserName="Peggy Justice",Email="peggy@gmail.com", Role=UserRole.DEV, Type=UserType.Regular},
             };
             foreach (User s in users)
             {

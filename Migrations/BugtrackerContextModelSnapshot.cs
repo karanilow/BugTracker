@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using bugtracker.Data;
 
+#nullable disable
+
 namespace bugtracker.Migrations
 {
     [DbContext(typeof(BugtrackerContext))]
@@ -13,8 +15,7 @@ namespace bugtracker.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder
-                .HasAnnotation("ProductVersion", "5.0.3");
+            modelBuilder.HasAnnotation("ProductVersion", "8.0.3");
 
             modelBuilder.Entity("bugtracker.Models.Project", b =>
                 {
@@ -30,7 +31,7 @@ namespace bugtracker.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Project");
+                    b.ToTable("Project", (string)null);
                 });
 
             modelBuilder.Entity("bugtracker.Models.ProjectAssignment", b =>
@@ -45,7 +46,7 @@ namespace bugtracker.Migrations
 
                     b.HasIndex("UserID");
 
-                    b.ToTable("ProjectAssignment");
+                    b.ToTable("ProjectAssignment", (string)null);
                 });
 
             modelBuilder.Entity("bugtracker.Models.Ticket", b =>
@@ -86,7 +87,7 @@ namespace bugtracker.Migrations
 
                     b.HasIndex("ProjectID");
 
-                    b.ToTable("Ticket");
+                    b.ToTable("Ticket", (string)null);
                 });
 
             modelBuilder.Entity("bugtracker.Models.TicketAssignment", b =>
@@ -101,7 +102,7 @@ namespace bugtracker.Migrations
 
                     b.HasIndex("UserID");
 
-                    b.ToTable("TicketAssignment");
+                    b.ToTable("TicketAssignment", (string)null);
                 });
 
             modelBuilder.Entity("bugtracker.Models.TicketHistory", b =>
@@ -130,7 +131,7 @@ namespace bugtracker.Migrations
                     b.HasIndex("TicketID")
                         .IsUnique();
 
-                    b.ToTable("TicketHistory");
+                    b.ToTable("TicketHistory", (string)null);
                 });
 
             modelBuilder.Entity("bugtracker.Models.User", b =>
@@ -138,6 +139,14 @@ namespace bugtracker.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("AuthenticatedId")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("AuthenticatedName")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -161,7 +170,7 @@ namespace bugtracker.Migrations
 
                     b.HasIndex("ProjectId");
 
-                    b.ToTable("User");
+                    b.ToTable("User", (string)null);
                 });
 
             modelBuilder.Entity("bugtracker.Models.ProjectAssignment", b =>
