@@ -13,19 +13,23 @@ namespace bugtracker.Data
             // Look for any users.
             if (context.Users.Any())
             {
+                if (context.Users.Count(u => string.Equals(u.AuthenticatedId, string.Empty)) > 0)
+                {
+                    InitAuthenticatedIds(context);
+                }
                 return;   // DB has been seeded
             }
 
             var users = new User[]
             {
-                new User{AuthenticatedId="Auth0 | 123465789", UserName="Nino Olivetto",Email="nino@hotmail.com", Role=UserRole.ADMIN, Type=UserType.Regular},
-                new User{AuthenticatedId="Auth0 | 1234657891", UserName="Meredith Alonso",Email="alonso98@hotmail.com", Role=UserRole.ADMIN, Type=UserType.Regular},
-                new User{AuthenticatedId="Auth0 | 12346578912", UserName="Arturo Anand",Email="aanand@msn.com", Role=UserRole.PM, Type=UserType.Regular},
-                new User{AuthenticatedId="Auth0 | 12346578913", UserName="Laura Norman",Email="l.norman@gmail.com", Role=UserRole.PM, Type=UserType.Regular},
-                new User{AuthenticatedId="Auth0 | 12346578914", UserName="Carson Alexander",Email="carson56@outlook.com", Role=UserRole.DEV, Type=UserType.Regular},
-                new User{AuthenticatedId="Auth0 | 12346578915", UserName="Gytis Barzdukas",Email="gytis.barzdukas@yahoo.com", Role=UserRole.DEV, Type=UserType.Regular},
-                new User{AuthenticatedId="Auth0 | 12346578916", UserName="Yan Li",Email="yan.li98@hotmail.com", Role=UserRole.DEV, Type=UserType.Regular},
-                new User{AuthenticatedId="Auth0 | 12346578917", UserName="Peggy Justice",Email="peggy@gmail.com", Role=UserRole.DEV, Type=UserType.Regular},
+                new User{AuthenticatedId="auth0|6707b877a55272a321ea6c92", UserName="Nino Olivetto",Email="nino@hotmail.com", Role=UserRole.ADMIN, Type=UserType.Regular},
+                new User{AuthenticatedId="auth0|6707b8254c1b3061f5ecd9e9", UserName="Meredith Alonso",Email="alonso98@hotmail.com", Role=UserRole.ADMIN, Type=UserType.Regular},
+                new User{AuthenticatedId="auth0|6707b8084c1b3061f5ecd9dc", UserName="Arturo Anand",Email="aanand@msn.com", Role=UserRole.PM, Type=UserType.Regular},
+                new User{AuthenticatedId="auth0|6707b7e400a8a31d1713efcb", UserName="Laura Norman",Email="l.norman@gmail.com", Role=UserRole.PM, Type=UserType.Regular},
+                new User{AuthenticatedId="auth0|6707b7c300a56e0a21ec190a", UserName="Carson Alexander",Email="carson56@outlook.com", Role=UserRole.DEV, Type=UserType.Regular},
+                new User{AuthenticatedId="auth0|6707b76e4c1b3061f5ecd994", UserName="Gytis Barzdukas",Email="gytis.barzdukas@yahoo.com", Role=UserRole.DEV, Type=UserType.Regular},
+                new User{AuthenticatedId="auth0|6707b739a55272a321ea6bf6", UserName="Yan Li",Email="yan.li98@hotmail.com", Role=UserRole.DEV, Type=UserType.Regular},
+                new User{AuthenticatedId="auth0|6707b6c878d9c8f2252cd5b9", UserName="Peggy Justice",Email="peggy@gmail.com", Role=UserRole.DEV, Type=UserType.Regular},
             };
             foreach (User s in users)
             {
@@ -138,6 +142,23 @@ namespace bugtracker.Data
             }
             context.SaveChanges();
 
+        }
+
+        private static void InitAuthenticatedIds(BugtrackerContext context)
+        {
+            var users = context.Users.ToList();
+            // users.Single(u => u.UserName == "Nino Olivetto").AuthenticatedId = "auth0|6707b877a55272a321ea6c92";
+            // users.Single(u => u.UserName == "Meredith Alonso").AuthenticatedId = "auth0|6707b8254c1b3061f5ecd9e9";
+            // users.Single(u => u.UserName == "Arturo Anand").AuthenticatedId = "auth0|6707b8084c1b3061f5ecd9dc";
+            // users.Single(u => u.UserName == "Laura Norman").AuthenticatedId = "auth0|6707b7e400a8a31d1713efcb";
+            // var user = users.Single(u => u.UserName == "Carson Alexander 2").AuthenticatedId = "auth0|6707b7c300a56e0a21ec190a";
+            // users.Single(u => u.UserName == "Gytis Barzdukas").AuthenticatedId = "auth0|6707b76e4c1b3061f5ecd994";
+            // users.Single(u => u.UserName == "Yan Li").AuthenticatedId = "auth0|6707b739a55272a321ea6bf6";
+            // users.Single(u => u.UserName == "Peggy Justice").AuthenticatedId = "auth0|6707b6c878d9c8f2252cd5b9";
+            //
+            // context.UpdateRange(user);
+            //
+            // context.SaveChanges();
         }
     }
 }

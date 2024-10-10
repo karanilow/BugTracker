@@ -17,11 +17,12 @@ namespace bugtracker
         {
             var host = CreateHostBuilder(args).Build();
 
-            CreateDbIfNotExists(host);
-
+            CreateOrUpdateDb(host);
+            
             host.Run();
         }
-        private static void CreateDbIfNotExists(IHost host)
+
+        private static void CreateOrUpdateDb(IHost host)
         {
             using (var scope = host.Services.CreateScope())
             {
