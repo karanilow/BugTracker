@@ -25,6 +25,8 @@ This tool allows you to create, assign and track tasks or issues during the life
 
 ![Image of the Dashboard](Images/Dashboard.png)
 
+![Image of the Task List](Images/List.png)
+
 ## Features
 
 ### Current features available 
